@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 
+        
+  <bean id="dataSource"
+  	class="org.apache.commons.dbcp.BasicDataSource">
+  	<property name="driverClassName"
+  		value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+  	</property>
+  	<property name="url"
+  		value="jdbc:sqlserver://localhost:1433;databaseName=MyTest2">
+  	</property>
+  	<property name="username" value="sa"></property>
+  	<property name="password" value="123"></property>
+  </bean>
+  <bean id="sessionFactory"
+  	class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+  	<property name="dataSource">
+  		<ref bean="dataSource" />
+  	</property>
+  	<property name="hibernateProperties">
+  		<props>
+  			<prop key="hibernate.dialect">
+  				org.hibernate.dialect.SQLServerDialect
+  			</prop>
+  			<!-- 指定显示sql语句 -->
+			<prop key="hibernate.show_sql">true</prop>  
+			<!-- 不格式化sql语句 -->
+            <prop key="hibernate.format_sql">true</prop>
+  		</props>
+  	</property>
+  	<property name="mappingResources">
+  		<list>
+  			
+  			<value>com/bean/Primary1.hbm.xml</value>
+  			<value>com/bean/xvqiu.hbm.xml</value>
+  			
+  			<value>com/bean/Jichu.hbm.xml</value></list>
+  	</property></bean>
+  	
+  	
+  	
+  	
+  	 <!-- 用户添加的Bean -->
+        <bean id="chj" class="com.LoginAction">
+            <property name="pri" ref="pri"></property>    
+        </bean>
+        
+          <bean id="pri" class="com.service.impl.ActionManagerImpl">
+            <property name="pdao" ref="pDAO1"></property>
+        </bean>
+   
+        <bean id="pDAO1" class="com.dao.impl.primaryDAOImpl">
+            <property name="sessionFactory">
+                <ref local="sessionFactory" />
+            </property>
+        </bean>
+       
+        <bean id="dl" class="com.Laction">
+            <property name="dl" ref="pri"></property>
+        </bean>
+        
+        
+        
+        
+        
+        
+         <bean id="tb1" class="com.Xvqiu">
+            <property name="tb1" ref="tb"></property>    
+        </bean>
+        
+        <bean id="tb" class="com.service.impl.ActionManagerxImpl">
+           <property name="xdao" ref="xx"></property>
+      
+        </bean>
+           
+          <bean id="xx" class="com.dao.impl.xvqiuDAOImpl">
+            <property name="sessionFactory">
+                <ref local="sessionFactory" />
+            </property>
+        </bean> 
+        
+       
+        
+        
+        <bean id="jc" class="com.jichu">
+            <property name="jc" ref="jc1"></property>    
+        </bean>
+        <bean id="jc1" class="com.service.impl.ActionManagerjImpl">
+          <property name="jdao" ref="jcs"></property>
+        </bean>
+         <bean id="jcs" class="com.dao.impl.jichuDAOIpml">
+            <property name="sessionFactory">
+                <ref local="sessionFactory" />
+            </property>
+        </bean> 
+        
+        
+        
+        
+  	</beans>

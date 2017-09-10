@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<package name="SSHLogin" extends="struts-default">
+        <action name="login" class="dl" >
+            <result name="success">/indextable.jsp</result>
+            <result name="fail">/faillogin.jsp</result>
+        </action>
+        
+        
+         <action name="register" class="chj" method="register">
+            <result name="SUCCESS">/Success.jsp</result>
+            <result name="FAILURE">/Failure.jsp</result>
+        </action>
+        
+         <action name="inf" class="tb1" method="infor">
+            <result name="SUCCESS">/tbs.jsp</result>
+            <result name="FAILURE">/tbf.jsp</result>
+        </action>
+        
+        <action name="jichu" class="jc" method="infor1">
+            <result name="SUCCESS">/tbs.jsp</result>
+            <result name="FAILURE">/tbf.jsp</result>
+        </action>
+        
+        
+	</package>
+</struts>    
